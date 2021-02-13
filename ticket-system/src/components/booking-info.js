@@ -10,6 +10,7 @@ export default function BookingInfo(props) {
           <p>
             Свободно мест: {cinema.hall.flat().length - getBookedPlacesCount()}
           </p>
+          <p>Забронировано мест: {getBookedPlacesCount()}</p>
           <p>Выбрано мест: {getCheckedPlacesCount()}</p>
           <button
             onClick={(e) => takeOrder()}
