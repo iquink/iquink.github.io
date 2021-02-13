@@ -4,14 +4,20 @@ import '../styles/components/booking-info.css'
 export default function BookingInfo(props) {
   return (
     <Context.Consumer>
-      {({ cinema, takeOrder, getCheckedPlacesCount, getBookedPlacesCount }) => (
+      {({
+        getPlacesTotalCount,
+        takeOrder,
+        getCheckedPlacesCount,
+        getBookedPlacesCount,
+      }) => (
         <div className="order-section">
-          {!getCheckedPlacesCount() ? <p>Выберите места!</p> : null}
-          <p>
-            Свободно мест: {cinema.hall.flat().length - getBookedPlacesCount()}
-          </p>
+          {!getCheckedPlacesCount() ? (
+            <p>Выберите места!</p>
+          ) : (
+            <p>Выбрано мест: {getCheckedPlacesCount()}</p>
+          )}
+          <p>Свободно мест: {getPlacesTotalCount() - getBookedPlacesCount()}</p>
           <p>Забронировано мест: {getBookedPlacesCount()}</p>
-          <p>Выбрано мест: {getCheckedPlacesCount()}</p>
           <button
             onClick={(e) => takeOrder()}
             disabled={!getCheckedPlacesCount()}

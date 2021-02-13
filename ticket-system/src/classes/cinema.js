@@ -48,4 +48,8 @@ export class Cinema {
   getBookedPlacesCount() {
     return this.hall.flat().filter((place) => place.isBooked).length
   }
+
+  getPlacesTotalCount() {
+    return this.hall.flat().length
+  }
 }
