@@ -1,0 +1,5 @@
+.places-grid {
+    display: grid;
+    grid-auto-flow: column;
+    grid-gap: 5px;
+}

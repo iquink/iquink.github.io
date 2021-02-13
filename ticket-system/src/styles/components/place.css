@@ -1,0 +1,20 @@
+.place {
+  width: 40px;
+  height: 40px;
+  background-color: lightgreen;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.place-booked {
+  background-color: lightcoral;
+}
+
+.place-checked {
+  background-color: navajowhite;
+}
+
+.place:disabled {
+  background-color: lightcoral;
+}

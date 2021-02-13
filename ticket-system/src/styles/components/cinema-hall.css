@@ -1,0 +1,15 @@
+.rows-grid {
+    width: fit-content;
+    justify-content: center;
+    display: grid;
+    grid-gap: 10px;
+}
+
+.cinema-screen {
+    text-transform: uppercase;
+    text-align: center;
+    vertical-align: middle;
+    border: 1px solid black;
+    width: 100%;
+    padding: 20px;
+}
