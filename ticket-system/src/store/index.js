@@ -31,6 +31,9 @@ export class Store extends React.Component {
 
   getBookedPlacesCount = () => this.state.cinema.getBookedPlacesCount()
 
+  getPlacesTotalCount = () => this.state.cinema.getPlacesTotalCount()
+
+
   render() {
     return (
       <Context.Provider
@@ -39,7 +42,8 @@ export class Store extends React.Component {
           togglePlace: this.togglePlace,
           takeOrder: this.takeOrder,
           getBookedPlacesCount: this.getBookedPlacesCount,
-          getCheckedPlacesCount: this.getCheckedPlacesCount
+          getCheckedPlacesCount: this.getCheckedPlacesCount,
+          getPlacesTotalCount: this.getPlacesTotalCount
         }}
       >
         {this.props.children}
