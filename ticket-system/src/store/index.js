@@ -12,21 +12,16 @@ export default function Store(props) {
   const [state, setState] = useState({
     cinema: new Cinema(cinemaProps),
   })
-
   const togglePlace = (rowIndex, placeIndex) => {
     state.cinema.togglePlace(rowIndex, placeIndex)
     setState({ cinema: state.cinema })
   }
-
   const takeOrder = () => {
     state.cinema.takeOrder()
     setState({ cinema: state.cinema })
   }
-
   const getCheckedPlacesCount = () => state.cinema.getCheckedPlacesCount()
-
   const getBookedPlacesCount = () => state.cinema.getBookedPlacesCount()
-
   const getPlacesTotalCount = () => state.cinema.getPlacesTotalCount()
 
   return (
