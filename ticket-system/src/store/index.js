@@ -1,4 +1,4 @@
-import React from 'react'
+import { useState } from 'react'
 import { Context } from '../context'
 import { Cinema } from '../classes/cinema.js'
 import { config } from '../core/config.js'
@@ -8,46 +8,39 @@ const cinemaProps = {
   placesCount: config.cinameHall.placesCount,
 }
 
-export class Store extends React.Component {
-  state = {
+export default function Store(props) {
+  const [state, setState] = useState({
     cinema: new Cinema(cinemaProps),
+  })
+
+  const togglePlace = (rowIndex, placeIndex) => {
+    state.cinema.togglePlace(rowIndex, placeIndex)
+    setState({ cinema: state.cinema })
   }
 
-  togglePlace = (rowIndex, placeIndex) => {
-    this.setState((state) => {
-      state.cinema.togglePlace(rowIndex, placeIndex)
-      return state
-    })
+  const takeOrder = () => {
+    state.cinema.takeOrder()
+    setState({ cinema: state.cinema })
   }
 
-  takeOrder = () => {
-    this.setState((state) => {
-      state.cinema.takeOrder()
-      return state
-    })
-  }
+  const getCheckedPlacesCount = () => state.cinema.getCheckedPlacesCount()
 
-  getCheckedPlacesCount = () => this.state.cinema.getCheckedPlacesCount()
+  const getBookedPlacesCount = () => state.cinema.getBookedPlacesCount()
 
-  getBookedPlacesCount = () => this.state.cinema.getBookedPlacesCount()
+  const getPlacesTotalCount = () => state.cinema.getPlacesTotalCount()
 
-  getPlacesTotalCount = () => this.state.cinema.getPlacesTotalCount()
-
-
-  render() {
-    return (
-      <Context.Provider
-        value={{
-          cinema: this.state.cinema,
-          togglePlace: this.togglePlace,
-          takeOrder: this.takeOrder,
-          getBookedPlacesCount: this.getBookedPlacesCount,
-          getCheckedPlacesCount: this.getCheckedPlacesCount,
-          getPlacesTotalCount: this.getPlacesTotalCount
-        }}
-      >
-        {this.props.children}
-      </Context.Provider>
-    )
-  }
+  return (
+    <Context.Provider
+      value={{
+        cinema: state.cinema,
+        togglePlace: togglePlace,
+        takeOrder: takeOrder,
+        getBookedPlacesCount: getBookedPlacesCount,
+        getCheckedPlacesCount: getCheckedPlacesCount,
+        getPlacesTotalCount: getPlacesTotalCount,
+      }}
+    >
+      {props.children}
+    </Context.Provider>
+  )
 }
